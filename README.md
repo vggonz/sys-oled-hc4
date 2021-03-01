@@ -68,6 +68,23 @@ The install script will automatically setup **sys-oled** to start at every start
 systemctl start sys-oled.service
 ```
 
+## UPDATE
+
+To update **sys-oled** to latest version, simply go into the git folder, pull latest version and re-install.
+
+```
+cd sys-oled
+git pull
+sudo ./install.sh
+```
+
+You will need to restart the service with following command:
+
+```
+systemctl restart sys-oled.service
+```
+
+
 ## Note
 
 This sys-oled app was developed and tested only with the OLED model SH1106 which has a matrix panel of 132 x 64. If you use a different model that has a smaller resolution, you might need to tweak the coordinate values.

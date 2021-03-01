@@ -73,25 +73,22 @@ def bytes2human(n):
                 return '%.1f%s' % (value, s)
     return "%sB" % n
 
-
 def cpu_usage():
+    load = psutil.cpu_percent(interval=None)
+    temp = psutil.sensors_temperatures()['f10e4078.thermal']
     uptime = datetime.now().replace(second=0, microsecond=0) - datetime.fromtimestamp(psutil.boot_time())
-    av1, av2, av3 = os.getloadavg()
-    return "ld: %.1f %.1f %.1f up: %s" \
-        % (av1, av2, av3, str(uptime).split(',')[0][:-3])
-
+    return "ld: %s%% T: %sC up: %s" \
+        % (str(load).split('.')[0], str(temp[0].current).split('.')[0], str(uptime).split(',')[0][:-3])
 
 def mem_usage():
     usage = psutil.virtual_memory()
     return "mem: %s / %s - %.0f%%" \
         % (bytes2human(usage.used), bytes2human(usage.total), usage.percent)
 
-
 def disk_usage(name, dir):
     usage = psutil.disk_usage(dir)
     return name + ": %s / %s - %.0f%%" \
         % (bytes2human(usage.used), bytes2human(usage.total), usage.percent)
-
 
 def network(iface):
     addr = psutil.net_if_addrs()[iface]
