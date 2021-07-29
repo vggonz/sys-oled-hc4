@@ -75,7 +75,7 @@ def bytes2human(n):
 
 def cpu_usage():
     load = psutil.cpu_percent(interval=None)
-    temp = psutil.sensors_temperatures()['f10e4078.thermal']
+    temp = psutil.sensors_temperatures()['cpu_thermal']
     uptime = datetime.now().replace(second=0, microsecond=0) - datetime.fromtimestamp(psutil.boot_time())
     return "ld: %s%% T: %sC up: %s" \
         % (str(load).split('.')[0], str(temp[0].current).split('.')[0], str(uptime).split(',')[0][:-3])

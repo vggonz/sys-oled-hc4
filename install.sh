@@ -14,6 +14,10 @@ echo "Installing Dependencies"
 apt-get update
 apt-get install -y $DEPS
 
+# luma.oled depends on this thing, but released non-alpha version does not build under gcc10
+echo "Installing GPIO library dependency in pip..."
+pip3 install RPi.GPIO==0.7.1a4
+
 echo "Installing luma.oled library"
 pip3 install --upgrade luma.oled
 
@@ -26,3 +30,6 @@ cp -frv system "$SYSTEMD_PATH"
 echo "Enabling sys-oled at startup"
 systemctl daemon-reload
 systemctl enable sys-oled.service
+
+echo "Starting service..."
+systemctl start sys-oled.service

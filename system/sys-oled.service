@@ -1,9 +1,8 @@
 [Unit]
-Description=System Starting on OLED Display
+Description=OLED Display
 
 [Service]
-EnvironmentFile=/etc/sys-oled.conf
-ExecStart=/usr/bin/python3 /usr/local/bin/sys-oled --display ${display_model}
+ExecStart=/usr/bin/python3 /usr/local/bin/sys-oled --display ssd1306 --i2c-port 0 --rotate 2
 
 [Install]
 WantedBy=multi-user.target
