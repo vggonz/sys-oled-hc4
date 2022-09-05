@@ -114,7 +114,7 @@ def display_info(device):
 
 def logo(device, msg):
     img_path = os.path.abspath(os.path.join(os.path.dirname(__file__),
-        '../share/sys-oled', 'helios4_logo.png'))
+        '../share/sys-oled', 'armbian-oled.png'))
     logo = Image.open(img_path).convert("RGBA")
 
     with canvas(device) as draw:
