@@ -14,8 +14,8 @@ fi
 echo "Installing Dependencies"
 apt-get update
 
-if [[ "$(lsb_release -cs)" == "jammy" ]]; then
-	echo "Jammy; use Ubuntu-packaged Python deps."
+if [[ "$(lsb_release -cs)" == "jammy" || "$(lsb_release -cs)" == "kinetic" ]]; then
+	echo "$(lsb_release -cs); use Ubuntu-packaged Python deps."
 	apt-get install -y ${RUNTIME_DEPS}
 else
 	echo "Not jammy, installing build deps, then using pip for python stuff. This is gonna take a while."
