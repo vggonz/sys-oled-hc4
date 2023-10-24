@@ -104,6 +104,10 @@ def host_time():
     now = datetime.now()
     return "" + now.strftime("%Y-%m-%d %H:%M")
 
+def fan():
+    fan = psutil.sensors_fans()['pwmfan']
+    return "%i %s" \
+            % (fan[0].current, "rpm")
 
 def display_info(device):
     with canvas(device) as draw:
@@ -116,6 +120,7 @@ def display_info(device):
             draw.text((0, 51), network(net_name), font=font, fill="white")
         else:
             draw.text((0, 39), network(net_name), font=font, fill="white")
+            draw.text((0, 51), fan(), font=font, fill="white")
 
 
 def logo(device, msg):
